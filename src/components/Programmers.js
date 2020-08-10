@@ -27,21 +27,16 @@ const listOfAwesome = [
 export default function Programmers() {
   // We'll have to use the state hook twice, as we need two slices of state.
   const [id, getId] = useState()
-  const [name, getName] = useState()
+  const [names, getNames] = useState(listOfAwesome)
   // The programmers on the one hand, and the id of the featured programmer on the other.
 
-  const getNameOfFeatured = (eve) => {
+  const getNameOfFeatured = () => {
     // This is not an event handler but a helper function. See its usage below.
     // It's going to need information from both slices of state!
     // Using the currently celebrated id, find inside the programmers slice of state
     // the _name_ of the currently celebrated programmer, and return it.
-    console.log('hi')
-    const index = listOfAwesome.findIndex(name=> {
-      return name.id === {id}
-    })
-    getName(listOfAwesome[index].name)
-    debugger
-    return name
+    
+    return names[id-1].name
     // need name and id
     // find name by current id
     // return current name
@@ -50,7 +45,7 @@ export default function Programmers() {
   const style = {
     fontSize: '1.5em',
     marginTop: '0.5em',
-    color: 'royalblue', // 🤔
+    color: id != null ? '#fdee00' : 'royalblue', // 🤔
   };
 
   return (
@@ -61,7 +56,7 @@ export default function Programmers() {
           /* Nasty bug! We should map over a slice of state, instead of 'listOfAwesome'.
           We might say: "it works, though!" But if the list of programmers is not state,
           we could never add or edit programmers in the future. The list would be a static thing. ;)" */
-          listOfAwesome.map(dev =>
+          names.map(dev =>
             <div key={dev.id}>
               {dev.name} <button onClick={() => { getId(dev.id)/* set the featured id passing dev.id */ }}>Feature</button>
             </div>
