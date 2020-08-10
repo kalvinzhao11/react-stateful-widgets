@@ -44,15 +44,16 @@ export default function Input() {
     /* STEP 4 */
     setInputValue(value)
   };
-  const reset = () => {
+  const reset = (event) => {
     /* STEP 5 */
     setInputValue('')
+    document.querySelector('input').value = ''
   };
 
   const style = {
     fontSize: '1.5em',
     marginBottom: '0.3em',
-    color: inputValue.length > 9 ? 'royalblue': 'black', /* STEP 2 */
+    color: inputValue.length > 9 ? 'royalblue': 'crimson', /* STEP 2 */
   };
 
   return (
